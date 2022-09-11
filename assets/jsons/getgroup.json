@@ -1,0 +1,475 @@
+{
+    "group": [
+        {
+            "_id": "62e4fca2ee9051090bd4d100",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "AAA-บ้านม่วง",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                },
+                {
+                    "_id": "63048ca5b10877ad8d19e279",
+                    "frist_name": "TEST4",
+                    "last_name": "TEST4",
+                    "email": "TEST4@gmail.com",
+                    "password": "$2a$10$ckW.s1f9iC/Ta3LHwpvfVeJbcZb6ZNtIKRuZN3kydBt.G8iwTC5P.",
+                    "actor": "พยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 1,
+                    "__v": 0
+                },
+                {
+                    "_id": "62d7ffd8cee63508406b6130",
+                    "frist_name": "TEST3",
+                    "last_name": "TEST3",
+                    "email": "TEST3@gmail.com",
+                    "password": "$2a$10$BANBZ2W2Y9I3nxCmGBSlUuBTQcfxNjZpfB3eAQzbxle78biemcU7.",
+                    "actor": "พยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 1,
+                    "__v": 0
+                },
+                {
+                    "_id": "62cd353016eaaf266706a5c1",
+                    "frist_name": "TEST200",
+                    "last_name": "TEST20",
+                    "email": "TEST2@gmail.com",
+                    "password": "$2a$10$qZPpeucXGzXPL1pIDy4oHuVt5l3d49DUZwVYDibYwC5O7oxEg4z1K",
+                    "actor": "พยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 3,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e4fcecee9051090bd4d11d",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "BBB-บ้านม่วง",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                },
+                {
+                    "_id": "6300a4769e9c1a627825cc64",
+                    "frist_name": "นัครินทร์",
+                    "last_name": "เทพิน",
+                    "email": "nakarin@gmail.com",
+                    "password": "$2a$10$qEzInUbqTo6wkDlgzA29Cet7/GB96rq6Y0vuCBTJTp4SPh7tkcE9.",
+                    "actor": "พยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 1,
+                    "__v": 0
+                },
+                {
+                    "_id": "6300a42b9e9c1a627825cc5e",
+                    "frist_name": "goto",
+                    "last_name": "goto0",
+                    "email": "goto@gmail.com",
+                    "password": "$2a$10$xY.KnmH06Hvj1GpwJy9.dOcX8AB1dzSalOTW4uAuUBzT9yNAGN.SC",
+                    "actor": "พยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 1,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e52e1d92352d380b260cd5",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "KKK-บ้านโพสีสะอาด",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e52e7692352d380b260cec",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "HHH-บ้านดุงน้อย",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e534d492352d380b260d79",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "TTT-ภูเก็ต",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e536b892352d380b260daf",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "WWW-บ้านจันทร์",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62e537d992352d380b260dcd",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "GGG-บ้านทอง",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62ea1b01dfd362496018245b",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "บ้านดุงใหญ่",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "62f9d80de59b6eddc65b649c",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "ABCD-บ้านม่วง",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "63121865dc176cbaa5c42b3d",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "BBB-บ้านดุงน้อย",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "63121a76dc176cbaa5c42b81",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "BBB-บ้านโพสีสะอาด",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "63121bbbdc176cbaa5c42ba5",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "TTT-เหนือคลอง",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "_id": "63121c29dc176cbaa5c42bd0",
+            "location": "โรงพยาบาลบ้านม่วง",
+            "name_group": "BBB-เขาพนม",
+            "_leader": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "_member": [
+                {
+                    "_id": "62cbc4e5420c9e1aff2d7b80",
+                    "frist_name": "คเชนทร์",
+                    "last_name": "กุลวงศ์",
+                    "email": "TEST1@gmail.com",
+                    "password": "$2a$10$bGW.EqIecKxZOWAmdE8hneouP2II9c8nvkNIFFoQuzDBDjuBM1qWy",
+                    "actor": "หัวหน้าพยาบาล",
+                    "location": "โรงพยาบาลบ้านม่วง",
+                    "tokenVersion": 16,
+                    "__v": 0
+                }
+            ],
+            "__v": 0
+        }
+    ]
+}

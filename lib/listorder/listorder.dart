@@ -4,6 +4,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/pubilc_.dart';
 import '../custom_code/actions/notifica.dart';
 
+import '../edited_profile/edited_profile_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -45,7 +46,7 @@ class _ListOrderState extends State<ListOrder> {
   late Future<GetGroupManagerModelAdmin> futureManagerGroup;
 
   String choiceChipsValue = "พยาบาล";
-  
+
   // List<List<String>> textlsit = [
   //   [
   //     "หัวหน้าพยาบาล",
@@ -85,7 +86,8 @@ class _ListOrderState extends State<ListOrder> {
   // ];
   List<String> actorNotMangerGroup = [];
   List<List<String>> textlsit1 = [];
-  
+  List<String> grouplist = [];
+
   // แสดงข้อมูลที่ยังไม่ได้จัดกลุ่ม
   Future<List<MemberNotManagerGroup>> getManagerNotGroupModel(
       {required String token}) async {
@@ -152,6 +154,7 @@ class _ListOrderState extends State<ListOrder> {
       if (res.statusCode == 200) {
         for (int i = 0; i < futureManagerGroup.group!.length; i++) {
           textlsit1.add([]);
+          grouplist.add("${futureManagerGroup.group![i].nameGroup}");
           for (int a = 0;
               a < futureManagerGroup.group![i].member!.length;
               a++) {
@@ -379,6 +382,8 @@ class _ListOrderState extends State<ListOrder> {
                       return ItemNotManageGroup(
                         data: listviewNotManagerGroup,
                         actorNotMangerGroup: actorNotMangerGroup,
+                        
+                        grouplist: grouplist,
                       );
                     }),
                 expanded: SizedBox(),
@@ -487,6 +492,7 @@ class _ListOrderState extends State<ListOrder> {
                                         stataShowManagerGroup,
                                     textlsit1: textlsit1,
                                     indexGroup: indexGroup,
+                                    grouplist: grouplist,
                                   ),
                                 ]);
                           }));
@@ -568,18 +574,54 @@ class ItemGroup extends StatefulWidget {
   bool stataShowManagerGroup;
   List<List<String>> textlsit1;
   int indexGroup;
+  List<String> grouplist;
   ItemGroup(
       {super.key,
       required this.listviewdataManagerGroup,
       required this.stataShowManagerGroup,
       required this.textlsit1,
-      required this.indexGroup});
+      required this.indexGroup,
+      required this.grouplist});
 
   @override
   State<ItemGroup> createState() => _ItemGroupState();
 }
 
 class _ItemGroupState extends State<ItemGroup> {
+  // แก้ไข actor
+  updateMyUserActor({
+    required String idUser,
+    required String actor,
+  }) async {
+    try {
+      final res = await http.patch(
+        Uri.parse("$url/api/admin/updateUser/$idUser"),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control_Allow_Origin': '*',
+          'x-access-token': '${FFAppState().tokenStore}',
+        },
+        body: convert.json.encode({"actor": "${actor}"}),
+      );
+      // await Future.delayed(Duration(seconds: 3));
+      // print("getGroupManagerModel body ${res.body}");
+      print("getGroupManagerModel state ${res.statusCode}");
+
+      if (res.statusCode == 200) {
+        await notifica(context, "แก้ไขบทบาทสำเร็จ", color: Colors.green);
+      } else {
+        await notifica(
+          context,
+          "แก้ไขบทบาทไม่สำเร็จ",
+        );
+        return res;
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -620,14 +662,25 @@ class _ItemGroupState extends State<ItemGroup> {
                           ChipData('หัวหน้าพยาบาล'),
                           ChipData('พยาบาล'),
                         ],
-                        onChanged: (val) {
+                        onChanged: (val) async {
                           if (val != null) {
-                            setState(() {
-                              widget.textlsit1[widget.indexGroup][indexName] =
-                                  val.first;
-                            });
-                            print(
-                                "val  ${val.first}เปลียนแล้ว ${widget.textlsit1}");
+                            try {
+                              final outputupdatemyuseractor = updateMyUserActor(
+                                  idUser:
+                                      "${widget.listviewdataManagerGroup.group![widget.indexGroup].member![indexName].id}",
+                                  actor: "${val.first}");
+
+                              print(
+                                  "stataupdatamyuseractor ${outputupdatemyuseractor}");
+                              setState(() {
+                                widget.textlsit1[widget.indexGroup][indexName] =
+                                    val.first;
+                              });
+                              print(
+                                  "val  ${val.first}เปลียนแล้ว ${widget.textlsit1}");
+                            } catch (error) {
+                              await notifica(context, "เกิดข้อผิดพลาด $error");
+                            }
                           }
                         },
                         selectedChipStyle: ChipStyle(
@@ -664,7 +717,33 @@ class _ItemGroupState extends State<ItemGroup> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => EditProfileWidget(
+                                          fisrtname: widget
+                                              .listviewdataManagerGroup
+                                              .group![widget.indexGroup]
+                                              .member![indexName]
+                                              .fristName,
+                                          lastname: widget
+                                              .listviewdataManagerGroup
+                                              .group![widget.indexGroup]
+                                              .member![indexName]
+                                              .lastName,
+                                          actor: widget
+                                              .listviewdataManagerGroup
+                                              .group![widget.indexGroup]
+                                              .member![indexName]
+                                              .actor,
+                                          group: widget
+                                              .listviewdataManagerGroup
+                                              .group![widget.indexGroup]
+                                              .nameGroup,
+                                          grouplist: widget.grouplist,
+                                        ))));
+                          },
                           child: Row(
                             children: [
                               Icon(

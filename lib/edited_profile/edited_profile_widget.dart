@@ -1,4 +1,6 @@
 import '../backend/api_requests/api_calls.dart';
+import '../backend/pubilc_.dart';
+import '../custom_code/actions/notifica.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -6,16 +8,25 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class EditProfileWidget extends StatefulWidget {
-  const EditProfileWidget({
-    Key? key,
-    this.name,
-    this.nickname,
-  }) : super(key: key);
-
-  final String? name;
-  final String? nickname;
+  const EditProfileWidget(
+      {Key? key,
+      this.idUser,
+      this.fisrtname,
+      this.lastname,
+      required this.actor,
+      this.group,
+      this.grouplist})
+      : super(key: key);
+  final String? idUser;
+  final String? fisrtname;
+  final String? lastname;
+  final String? actor;
+  final String? group;
+  final List<String>? grouplist;
 
   @override
   _EditProfileWidgetState createState() => _EditProfileWidgetState();
@@ -30,12 +41,57 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   TextEditingController? textController4;
   String? dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  updateMyUserActor(
+      {required String idUser,
+      required String actor,
+      required String frist_name,
+      required String last_name,
+      String? group}) async {
+    try {
+      final res =
+          await http.patch(Uri.parse("$url/api/admin/updateUser/$idUser"),
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control_Allow_Origin': '*',
+                'x-access-token': '${FFAppState().tokenStore}',
+              },
+              body: group == null
+                  ? convert.json.encode({
+                      "actor": "${actor}",
+                      "frist_name": "$frist_name",
+                      "last_name": "$last_name",
+                    })
+                  : convert.json.encode({
+                      "actor": "${actor}",
+                      "frist_name": "$frist_name",
+                      "last_name": "$last_name",
+                      // "name_group": "$group"
+                    }));
+      // await Future.delayed(Duration(seconds: 3));
+      // print("getGroupManagerModel body ${res.body}");
+      print("getGroupManagerModel state ${res.statusCode}");
+
+      if (res.statusCode == 200) {
+        await notifica(context, "แก้ไขโปรไฟล์สำเร็จ", color: Colors.green);
+        Navigator.pop(context);
+      } else {
+        await notifica(
+          context,
+          "แก้ไขโปรไฟล์ไม่สำเร็จ",
+        );
+        return res;
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController(text: widget.name);
-    textController2 = TextEditingController(text: widget.nickname);
+    textController1 = TextEditingController(text: widget.fisrtname);
+    textController2 = TextEditingController(text: widget.lastname);
     textController3 =
         TextEditingController(text: 'แพทยศาสตร์ มหาวิทยาลัยพะเยา');
     textController4 = TextEditingController(text: 'วิชาเวรกิจฉุกเฉิน');
@@ -43,6 +99,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("tt ${widget.grouplist}");
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -283,9 +340,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 30, 0, 0),
                                   child: FlutterFlowDropDown(
-                                    options: ['Option 1', 'Option 2'],
-                                    onChanged: (val) =>
-                                        setState(() => dropDownValue1 = val),
+                                    initialOption: "${widget.actor}",
+                                    options: ['หัวหน้าพยาบาล', 'พยาบาล'],
+                                    onChanged: (val) {
+                                      setState(() => dropDownValue1 = val);
+                                    },
                                     width: double.infinity,
                                     height: 60,
                                     textStyle: GoogleFonts.mitr(
@@ -309,9 +368,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 30, 0, 0),
                                   child: FlutterFlowDropDown(
-                                    options: ['Option 1', 'Option 2'],
-                                    onChanged: (val) =>
-                                        setState(() => dropDownValue2 = val),
+                                    initialOption: widget.group == null
+                                        ? null
+                                        : "${widget.group}",
+                                    options: widget.grouplist ?? ["ไม่มีกลุ่ม"],
+                                    onChanged: (val) {
+                                      setState(() => dropDownValue2 = val);
+                                      if (dropDownValue2 == "ไม่มีกลุ่ม") {
+                                      } else {}
+                                    },
                                     width: double.infinity,
                                     height: 60,
                                     textStyle: GoogleFonts.mitr(
@@ -339,8 +404,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 EdgeInsetsDirectional.fromSTEB(20, 50, 20, 50),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                
                                 await Future.delayed(Duration(seconds: 2));
+                                updateMyUserActor(
+                                    idUser: widget.idUser as String,
+                                    frist_name: textController1!.text,
+                                    last_name: textController2!.text,
+                                    actor: dropDownValue1 == null
+                                        ? widget.actor as String
+                                        : dropDownValue1 as String,
+                                    group: dropDownValue2 == null
+                                        ? widget.group
+                                        : dropDownValue2);
                                 // var _shouldSetState = false;
                                 // if (widget.name != null && widget.name != '') {
                                 //   if (widget.nickname != null &&
@@ -387,7 +461,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 // }
 
                                 // if (_shouldSetState) setState(() {});
-                                
                               },
                               text: 'บันทึก',
                               options: FFButtonOptions(

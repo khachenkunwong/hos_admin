@@ -114,7 +114,7 @@ class MenuItems {
       case MenuItems.editProfile:
         //Do something
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) =>  EditProfileWidget()));
+            MaterialPageRoute(builder: (context) =>  EditProfileWidget(fisrtname: "admin",lastname: "admin1",actor: "admin",)));
         break;
       case MenuItems.logout:
         //Do something

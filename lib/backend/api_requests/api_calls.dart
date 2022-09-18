@@ -247,22 +247,17 @@ class UpdateMyUserActorCall {
     
     final body = '''
 {
-  "_id": "62cbf3ce8d44d4f228cbb207",
-  "actor": "พยาบาล"
+  "actor": "$actor"
 }''';
 print(body);
     return ApiManager.instance.makeApiCall(
       callName: 'updateMyUserActor',
-      apiUrl: '$url/api/admin/updateUser',
+      apiUrl: '$url/api/admin/updateUser/$idUser',
       callType: ApiCallType.PATCH,
       headers: {
         'content-type': 'application/json',
         'Access-Control_Allow_Origin': '*',
         'x-access-token': '${FFAppState().tokenStore}',
-      },
-      params: {
-        '_id': "62cbf3ce8d44d4f228cbb207",
-        'actor': "พยาบาล",
       },
       body: body,
       bodyType: BodyType.JSON,

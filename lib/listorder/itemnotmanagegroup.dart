@@ -4,18 +4,24 @@ import 'package:hos_admin/app_state.dart';
 import 'package:hos_admin/model/not_manager_group_model.dart';
 
 import '../backend/api_requests/api_calls.dart';
+import '../backend/pubilc_.dart';
+import '../custom_code/actions/notifica.dart';
+import '../edited_profile/edited_profile_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class ItemNotManageGroup extends StatefulWidget {
   List<MemberNotManagerGroup> data;
   List<String> actorNotMangerGroup;
+  List<String> grouplist;
 
-  ItemNotManageGroup({
-    super.key,
-    required this.data,
-    required this.actorNotMangerGroup,
-  });
+  ItemNotManageGroup(
+      {super.key,
+      required this.data,
+      required this.actorNotMangerGroup,
+      required this.grouplist});
 
   @override
   State<ItemNotManageGroup> createState() => _ItemNotManageGroupState();
@@ -23,6 +29,39 @@ class ItemNotManageGroup extends StatefulWidget {
 
 class _ItemNotManageGroupState extends State<ItemNotManageGroup> {
   Future<ApiCallResponse>? outputupdataactor;
+  updateMyUserActor({
+    required String idUser,
+    required String actor,
+  }) async {
+    try {
+      final res = await http.patch(
+        Uri.parse("$url/api/admin/updateUser/$idUser"),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control_Allow_Origin': '*',
+          'x-access-token': '${FFAppState().tokenStore}',
+        },
+        body: convert.json.encode({"actor": "${actor}"}),
+      );
+      // await Future.delayed(Duration(seconds: 3));
+      // print("getGroupManagerModel body ${res.body}");
+      print("getGroupManagerModel state ${res.statusCode}");
+
+      if (res.statusCode == 200) {
+        await notifica(context, "แก้ไขบทบาทสำเร็จ", color: Colors.green);
+      } else {
+        await notifica(
+          context,
+          "แก้ไขบทบาทไม่สำเร็จ",
+        );
+        return res;
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -66,21 +105,25 @@ class _ItemNotManageGroupState extends State<ItemNotManageGroup> {
                         ChipData('หัวหน้าพยาบาล'),
                         ChipData('พยาบาล'),
                       ],
-                      onChanged: (val) {
+                      onChanged: (val) async {
                         print(
                             "val--- ${val} ${widget.data[indexNotManagerGroup].id}");
 
                         if (val != null) {
-                          outputupdataactor = UpdateMyUserActorCall.call(
-                              idUser: "${widget.data[indexNotManagerGroup].id}",
-                              actor: "${val.first}");
-                          final stataupdatamyuseractor =
-                              UpdateMyUserActorCall.resState(outputupdataactor);
-                          print(
-                              "stataupdatamyuseractor ${stataupdatamyuseractor}");
-                          setState(() =>
-                              widget.actorNotMangerGroup[indexNotManagerGroup] =
-                                  val.first);
+                          try {
+                            final outputupdatemyuseractor = updateMyUserActor(
+                                idUser:
+                                    "${widget.data[indexNotManagerGroup].id}",
+                                actor: "${val.first}");
+
+                            print(
+                                "stataupdatamyuseractor ${outputupdatemyuseractor}");
+                            setState(() => widget
+                                    .actorNotMangerGroup[indexNotManagerGroup] =
+                                val.first);
+                          } catch (error) {
+                            await notifica(context, "เกิดข้อผิดพลาด $error");
+                          }
                         }
                         print("val--- ${val} ${widget.actorNotMangerGroup}");
                       },
@@ -118,7 +161,24 @@ class _ItemNotManageGroupState extends State<ItemNotManageGroup> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => EditProfileWidget(
+                                    idUser:
+                                        widget.data[indexNotManagerGroup].id,
+                                    fisrtname: widget
+                                        .data[indexNotManagerGroup].fristName,
+                                    lastname: widget
+                                        .data[indexNotManagerGroup].lastName,
+                                    actor:
+                                        widget.data[indexNotManagerGroup].actor,
+                                    grouplist: widget.grouplist,
+                                  )),
+                            ),
+                          );
+                        },
                         child: Row(
                           children: [
                             Icon(

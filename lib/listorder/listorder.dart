@@ -123,9 +123,12 @@ class _ListOrderState extends State<ListOrder> {
           "แสดงข้อมูลที่ยังไม่ได้จัดกลุ่มไม่สำเร็จ",
         );
       }
+      
       return futureNotManagerGroup;
     } catch (error) {
       print(error);
+      await Future.delayed(Duration(seconds: 5));
+      setState(() {});
     }
     return [];
   }
@@ -164,7 +167,7 @@ class _ListOrderState extends State<ListOrder> {
         }
         await notifica(context, "แสดงข้อมูลจัดกลุ่มเสำเร็จ",
             color: Colors.green);
-
+        
         return futureManagerGroup;
       } else {
         await notifica(
@@ -175,6 +178,8 @@ class _ListOrderState extends State<ListOrder> {
       return futureManagerGroup;
     } catch (error) {
       print(error);
+      await Future.delayed(Duration(seconds: 5));
+      setState(() {});
     }
     return GetGroupManagerModelAdmin();
   }
@@ -189,10 +194,10 @@ class _ListOrderState extends State<ListOrder> {
 
     // print(dataGroup.data!.first.group);
 
+    print("textlsit1 ${textlsit1}");
     futureNotManagerGroup =
         getManagerNotGroupModel(token: FFAppState().tokenStore);
     futureManagerGroup = getGroupManagerModel(token: FFAppState().tokenStore);
-    print("textlsit1 ${textlsit1}");
   }
 
   // List<List<String>> _generateData() {
@@ -212,6 +217,7 @@ class _ListOrderState extends State<ListOrder> {
   @override
   Widget build(BuildContext context) {
     // FFAppState().itemsduty = "";
+    
     return Scaffold(
       key: scaffoldKey,
       // floatingActionButton: Row(
@@ -382,7 +388,6 @@ class _ListOrderState extends State<ListOrder> {
                       return ItemNotManageGroup(
                         data: listviewNotManagerGroup,
                         actorNotMangerGroup: actorNotMangerGroup,
-                        
                         grouplist: grouplist,
                       );
                     }),
@@ -440,7 +445,7 @@ class _ListOrderState extends State<ListOrder> {
                           ),
                         );
                       }
-                      if (dataManagerGroup == null) {
+                      if (dataManagerGroup.data == null) {
                         return Center(
                           child: SizedBox(
                               width: 50, height: 50, child: Text("ว่าง")),
@@ -454,16 +459,29 @@ class _ListOrderState extends State<ListOrder> {
 
                       GetGroupManagerModelAdmin listviewdataManagerGroup =
                           dataManagerGroup.data!;
+
                       if (listviewdataManagerGroup.group == null) {
                         return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primaryColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "ยังไม่ได้สร้างกลุ่ม",
+                              style: GoogleFonts.mitr(
+                                fontSize: 20,
+                                color: Color(0xFFF727272),
+                              ),
                             ),
                           ),
                         );
+                        // return Center(
+                        //   child: SizedBox(
+                        //     width: 50,
+                        //     height: 50,
+                        //     child: CircularProgressIndicator(
+                        //       color: FlutterFlowTheme.of(context).primaryColor,
+                        //     ),
+                        //   ),
+                        // );
                       }
                       return ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),

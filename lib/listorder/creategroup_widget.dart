@@ -28,7 +28,8 @@ class _CreateGroupWidgetState extends State<CreateGroupWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return 
+    AlertDialog(
       title: SizedBox(
         height: 100.0,
         width: 500.0,

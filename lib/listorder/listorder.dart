@@ -1,4 +1,5 @@
 import 'package:expandable/expandable.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../backend/api_requests/api_calls.dart';
 import '../backend/pubilc_.dart';
@@ -16,9 +17,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import '../model/group_manager_model.dart';
 import '../model/not_manager_group_model.dart';
+import '../model/showallmember_model.dart';
 import 'creategroup_widget.dart';
 import 'itemnotmanagegroup.dart';
 import 'menuitem.dart';
+import 'searchlist_widget.dart';
 
 class ListOrder extends StatefulWidget {
   const ListOrder({Key? key}) : super(key: key);
@@ -89,8 +92,7 @@ class _ListOrderState extends State<ListOrder> {
   List<String> grouplist = [];
 
   // แสดงข้อมูลที่ยังไม่ได้จัดกลุ่ม
-  Future<List<MemberNotManagerGroup>> getManagerNotGroupModel(
-      {required String token}) async {
+  Future<List<MemberNotManagerGroup>> getManagerNotGroupModel({required String token}) async {
     try {
       print(token);
       final res = await http.get(
@@ -123,7 +125,7 @@ class _ListOrderState extends State<ListOrder> {
           "แสดงข้อมูลที่ยังไม่ได้จัดกลุ่มไม่สำเร็จ",
         );
       }
-      
+
       return futureNotManagerGroup;
     } catch (error) {
       print(error);
@@ -167,7 +169,7 @@ class _ListOrderState extends State<ListOrder> {
         }
         await notifica(context, "แสดงข้อมูลจัดกลุ่มเสำเร็จ",
             color: Colors.green);
-        
+
         return futureManagerGroup;
       } else {
         await notifica(
@@ -217,7 +219,7 @@ class _ListOrderState extends State<ListOrder> {
   @override
   Widget build(BuildContext context) {
     // FFAppState().itemsduty = "";
-    
+
     return Scaffold(
       key: scaffoldKey,
       // floatingActionButton: Row(
@@ -322,78 +324,113 @@ class _ListOrderState extends State<ListOrder> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ExpandableTheme(
-              data: const ExpandableThemeData(
-                  iconPadding: EdgeInsets.fromLTRB(0, 15, 8, 8),
-                  animationDuration: Duration(milliseconds: 250)),
-              child: ExpandablePanel(
-                header: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "ยังไม่ได้จัดกลุ่ม",
-                        style: GoogleFonts.mitr(
-                            fontSize: 24, color: Color(0xFFF727272)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () async {
-                          await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return CreateGroupWidget();
-                              });
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: FlutterFlowTheme.of(context).primaryBlue,
-                              size: 24,
-                            ),
-                            Text(
-                              "เพิ่มสมาชิกเข้าโรงพยาบาล",
-                              style: GoogleFonts.mitr(
-                                fontSize: 24,
-                                color: FlutterFlowTheme.of(context).primaryBlue,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+            Query(
+                options: QueryOptions(
+                  document: gql(allmember),
                 ),
-                collapsed: FutureBuilder<List<MemberNotManagerGroup>>(
-                    future: futureNotManagerGroup,
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primaryColor,
+                builder: (QueryResult result, {fetchMore, refetch}) {
+                  if (result.hasException) {
+                    return Text(result.exception.toString());
+                  }
+                  if (result.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  // final productList = Welcome.fromJson(result.data as Map<String, dynamic>);
+                  // print(productList);
+                  print("result.data ${result.data}");
+                  final getMemberAll =
+                      ShowMemberAll.fromJson(result.data!).users;
+                  if (getMemberAll?.isEmpty == null) {
+                    return Text("ค่าว่าง");
+                  }
+                  return ExpandableTheme(
+                    data: const ExpandableThemeData(
+                        iconPadding: EdgeInsets.fromLTRB(0, 15, 8, 8),
+                        animationDuration: Duration(milliseconds: 250)),
+                    child: ExpandablePanel(
+                      header: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "ยังไม่ได้จัดกลุ่ม",
+                              style: GoogleFonts.mitr(
+                                  fontSize: 24, color: Color(0xFFF727272)),
                             ),
                           ),
-                        );
-                      }
-                      final listviewNotManagerGroup = snapshot.data!;
-                      print(
-                          "listviewNotManagerGroup ${listviewNotManagerGroup}");
-                      return ItemNotManageGroup(
-                        data: listviewNotManagerGroup,
-                        actorNotMangerGroup: actorNotMangerGroup,
-                        grouplist: grouplist,
-                      );
-                    }),
-                expanded: SizedBox(),
-              ),
-            ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return SearchWidget(
+                                      listvievDutySearch: getMemberAll!,
+                                    );
+                                  },
+                                );
+                                // await showDialog(
+                                //     context: context,
+                                //     builder: (alertDialogContext) {
+                                //       return CreateGroupWidget();
+                                //     });
+                              },
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBlue,
+                                    size: 24,
+                                  ),
+                                  Text(
+                                    "เพิ่มสมาชิกเข้าโรงพยาบาล",
+                                    style: GoogleFonts.mitr(
+                                      fontSize: 24,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBlue,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      collapsed: FutureBuilder<List<MemberNotManagerGroup>>(
+                          future: futureNotManagerGroup,
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                  ),
+                                ),
+                              );
+                            }
+                            final listviewNotManagerGroup = snapshot.data!;
+                            print(
+                                "listviewNotManagerGroup ${listviewNotManagerGroup}");
+                            return ItemNotManageGroup(
+                              data: listviewNotManagerGroup,
+                              actorNotMangerGroup: actorNotMangerGroup,
+                              grouplist: grouplist,
+                            );
+                          }),
+                      expanded: SizedBox(),
+                    ),
+                  );
+                }),
+
             ExpandableTheme(
               data: const ExpandableThemeData(
                   iconPadding: EdgeInsets.fromLTRB(0, 15, 8, 8),
@@ -491,6 +528,7 @@ class _ListOrderState extends State<ListOrder> {
                             final indexnumber1 = indexGroup;
                             return ExpansionTile(
                                 initiallyExpanded: stataShowManagerGroup,
+                                maintainState: false,
                                 title: const SizedBox(),
                                 leading: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -518,6 +556,7 @@ class _ListOrderState extends State<ListOrder> {
                 expanded: SizedBox(),
               ),
             ),
+            
             Container(
               height: 100.0,
               width: 100.0,

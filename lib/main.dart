@@ -1,17 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'backend/pubilc_.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await FlutterFlowTheme.initialize();
+  final HttpLink httpLink = HttpLink(
+    '$url/graphql',
+  );
+  final AuthLink authLink = AuthLink(
+      getToken: () async {
+        final token = "${FFAppState().tokenStore}";
+        return "$token";
+      },
+    );
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: authLink.concat(httpLink),
+      cache: GraphQLCache(store: InMemoryStore()),
+    ),
+  );
+  var app = GraphQLProvider(
+    client: client,
+    child: MyApp(),
+  );
 
   FFAppState(); // Initialize FFAppState
 
-  runApp(MyApp());
+  runApp(app);
   // doWhenWindowReady(() {
   //   final win = appWindow;
   //   const initialSize = Size(1200, 500);

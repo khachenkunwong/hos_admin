@@ -1,11 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'backend/pubilc_.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +16,11 @@ void main() async {
     '$url/graphql',
   );
   final AuthLink authLink = AuthLink(
-      getToken: () async {
-        final token = "${FFAppState().tokenStore}";
-        return "$token";
-      },
-    );
+    getToken: () async {
+      final token = "${FFAppState().tokenStore}";
+      return "$token";
+    },
+  );
   ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(
       link: authLink.concat(httpLink),
@@ -152,14 +153,25 @@ class _NavBarPageState extends State<NavBarPage> {
                 customWidget: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      currentIndex == 1
-                          ? Icons.notifications
-                          : Icons.notifications,
-                      color: currentIndex == 1
-                          ? Color(0xFF00A2FD)
-                          : Color(0xFF727272),
-                      size: currentIndex == 1 ? 26.0 : 23.0,
+                    Badge(
+                      badgeContent:Text("1",style: GoogleFonts.mitr(fontSize: 1.0,color: Colors.white),),
+                      showBadge: currentIndex != 1,
+                      shape: BadgeShape.circle,
+                      badgeColor: FlutterFlowTheme.of(context).primaryRed,
+                      elevation: 4,
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      position: BadgePosition.topEnd(),
+                      animationType: BadgeAnimationType.scale,
+                      toAnimate: true,
+                      child: Icon(
+                        currentIndex == 1
+                            ? Icons.notifications
+                            : Icons.notifications,
+                        color: currentIndex == 1
+                            ? Color(0xFF00A2FD)
+                            : Color(0xFF727272),
+                        size: currentIndex == 1 ? 26.0 : 23.0,
+                      ),
                     ),
                     Text(
                       'แจ้งเตือน',

@@ -73,6 +73,9 @@ class _ItemNotManageGroupState extends State<ItemNotManageGroup> {
         if (widget.data[indexNotManagerGroup].email == FFAppState().myemail) {
           return SizedBox();
         }
+        if (widget.data[indexNotManagerGroup].actor == "ผู้อำนวนการ" || widget.data[indexNotManagerGroup].actor == "admin") {
+          return SizedBox();
+        }
         return ListTile(
           onTap: () {},
           title: Padding(

@@ -57,6 +57,7 @@ dependencies:
   expandable_group: ^0.0.8
   expandable: ^5.0.1
   graphql_flutter: ^5.1.0
+  badges: ^2.0.3
 
 dev_dependencies:
   flutter_test:
